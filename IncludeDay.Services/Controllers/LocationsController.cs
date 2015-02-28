@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Binbin.Linq;
 using IncludeDay.Data;
 using IncludeDay.Data.Entities;
 
@@ -11,19 +12,33 @@ namespace IncludeDay.Services.Controllers
 {
     public class LocationsController : ApiController
     {
-        private IncludeDayContext db = new IncludeDayContext();
+        private readonly IncludeDayContext _db = new IncludeDayContext();
 
         // GET: api/Locations
-        public IQueryable<Location> GetLocations()
+        public IQueryable<Location> GetLocations(string description, LocationType? type)
         {
-            return db.Locations;
+
+            var predicate = PredicateBuilder.False<Location>();
+
+            if(!string.IsNullOrEmpty(description))
+            {
+                predicate = predicate.And(p => p.Description.Contains(description));
+            }
+
+            if (type.HasValue)
+            {
+                predicate = predicate.Or(p => p.Description.Contains(description));
+            }
+
+            return _db.Locations.Where(predicate);
+
         }
 
         // GET: api/Locations/5
         [ResponseType(typeof(Location))]
         public IHttpActionResult GetLocation(int id)
         {
-            Location location = db.Locations.Find(id);
+            Location location = _db.Locations.Find(id);
             if (location == null)
             {
                 return NotFound();
@@ -46,11 +61,11 @@ namespace IncludeDay.Services.Controllers
                 return BadRequest();
             }
 
-            db.Entry(location).State = EntityState.Modified;
+            _db.Entry(location).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                _db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -76,8 +91,8 @@ namespace IncludeDay.Services.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Locations.Add(location);
-            db.SaveChanges();
+            _db.Locations.Add(location);
+            _db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = location.Id }, location);
         }
@@ -86,14 +101,14 @@ namespace IncludeDay.Services.Controllers
         [ResponseType(typeof(Location))]
         public IHttpActionResult DeleteLocation(int id)
         {
-            Location location = db.Locations.Find(id);
+            Location location = _db.Locations.Find(id);
             if (location == null)
             {
                 return NotFound();
             }
 
-            db.Locations.Remove(location);
-            db.SaveChanges();
+            _db.Locations.Remove(location);
+            _db.SaveChanges();
 
             return Ok(location);
         }
@@ -102,14 +117,14 @@ namespace IncludeDay.Services.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool LocationExists(int id)
         {
-            return db.Locations.Count(e => e.Id == id) > 0;
+            return _db.Locations.Count(e => e.Id == id) > 0;
         }
     }
 }

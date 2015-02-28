@@ -18,10 +18,13 @@ namespace IncludeDay.Data.Entities
         [Required]
         public int Rating { get; set; }
 
+        public LocationType Type { get; set; }
+
         [Required]
         [StringLength(128)]
         public string UserName { get; set; }
 
     }
+
 }
 
