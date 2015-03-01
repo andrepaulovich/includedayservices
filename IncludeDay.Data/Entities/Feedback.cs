@@ -12,13 +12,13 @@ namespace IncludeDay.Data.Entities
         [Key]
         public int Id { get; set; }
 
+        public int LocationId { get; set; }
+
         [Required]
         public string Description { get; set; }
 
         [Required]
         public int Rating { get; set; }
-
-        public LocationType Type { get; set; }
 
         [Required]
         [StringLength(128)]

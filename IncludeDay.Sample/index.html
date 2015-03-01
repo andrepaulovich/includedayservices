@@ -1,76 +1,186 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		<title>Include Day CI&T 2015</title>
-		
-		<script src="js/jquery-2.1.3.js"></script>
-        <script src="js/bootstrap.js"></script>
-		        
-		<link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/main.css">
         
-        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+        <title>Include Day CI&T 2015</title>
+
+        <script src="js/jquery-2.1.3.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
+
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css' />
+
     </head>
     <body>
-		<!-- Início da barra de navegação -->
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <!-- Início da barra de navegação -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav">
-                            <li class="active"><a href="index.html" title="Página inicial">Home</a></li>
-							<li><a href="cadastrar.html">Cadastrar</a></li>
-                            <li><a href="encontrar.html">Encontrar</a></li>
-                            <li><a href="avaliar.html">Avaliar</a></li>
-                        </ul>
-                    </div>
-               </div>
-           </div>
-        </div>
-		<!-- Fim da barra de navegação -->
+                    </button>
+                    <a class="navbar-brand" href="#">Include Day</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="cadastrar.html">Cadastrar</a></li>
+                        <li><a href="index.html">Encontrar</a></li>
+                        <li><a href="avaliar.html">Avaliar</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <!-- Fim da barra de navegação -->
+
         <!-- Início do container para a classe 'hero-unit' -->
-		<div class="container-fluid hero">
+        <div class="container hero">
             <!-- Início hero unit -->
             <div class="hero-unit">
-				<h1>#IncludeDayCI&T</h1>
-				<p>Conheça o novo sistema de cadastro, localização e avaliação de locais com acessibilidade.</p>
-		    </div>
-		</div> <!-- /container hero -->
+                <h1>#IncludeDayCI&T</h1>
+                <p>Conheça o novo sistema de cadastro, localização e avaliação de locais com acessibilidade.</p>
+            </div>
+        </div> <!-- /container hero -->
         <hr>
-        <!-- Início container-fluid -->
-		<div class="container-fluid">
+        <!-- Início container-fuild -->
+        <div class="container">
             <div class="row-fluid">
-                <div class="span4">
-                    <h2>Cadastre</h2>
-                    <p>Conheçe algum local bacana para ir e convidar os seus amigos? Este lugar possui acessibilidade garantida para que todos possam frequentar? Compartilhe com a gente, é rápido, fácil e ajudará quem ainda não o conheçe!</p>
-                    <p><a class="btn" href="cadastrar.html" title="">Cadastrar &raquo;</a></p>
+
+                <h2>Encontrar estabelecimento</h2>
+                <!-- Início form -->
+                <form role="form">
+                    
+                    <div class="form-group">
+                        <label for="name">Descrição:</label>
+                        <input type="text" class="form-control" id="description">
+                    </div>
+                        <div class="form-group">
+                        <label for="localType">Tipo:</label>
+                        <select class="form-control" id="localType">
+                            <option value="">-- TODOS --</option>
+                            <option>Bar</option>
+                            <option>Lanchonete</option>
+                            <option>Restaurante</option>
+                            <option>Sorveteria</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Cidade:</label>
+                        <select class="form-control" id="city">
+                            <option value="">-- TODOS --</option>
+                            <option>Americana</option>
+                            <option>Campinas</option>
+                            <option>Jundiaí</option>
+                            <option>São Paulo</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-default btn-pesquisar">Encontrar &raquo;</button>
+                    
+                </form> 
+                <!-- /form -->
+                
+                <h3>Lista de Locais</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-result">
+
+                        </tbody>
+                    </table>
                 </div>
-                <div class="span4">
-                    <h2>Encontre</h2>
-                    <p>Está procurando algum lugar para conheçer e curtir com os seus amigos? Precisa que seja um lugar bacana, que possua acessibilidade a quem precisa? Aqui você poderá encontrar os melhores lugares, entre restaurantes, bares e muito mais!</p>
-                    <p><a class="btn" href="encontrar.html" title="">Encontrar &raquo;</a></p>
-               </div>
-                <div class="span4">
-                    <h2>Avalie</h2>
-                    <p>Que tal nos ajudar a avaliar os lugares que você mais gosta? Colabore com a comunidade e dê uma nota para o estabelecimento. Isto irá ajudar quem estiver procurando um novo local para conheçer!</p>
-                    <p><a class="btn" href="avaliar.html" title="">Avaliar &raquo;</a></p>
-                </div>
+                
+                <script type="text/javascript">
+                    
+                    $(document).ready(function () {
+
+                        var URL_TODOS_LOCAIS = "http://localhost/IncludeDay.Services/api/Locations";
+
+                        $(".btn-pesquisar").click(function () {
+
+                            var filtro = {
+                                LocationType: $("#localType").val(),
+                                Description: $("#description").val(),
+                                City: $("#city").val()
+                            };
+
+                            console.log(filtro);
+
+                            $.ajax({
+                                type: "GET",
+                                url: URL_TODOS_LOCAIS,
+                                data: filtro,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                processData: true,
+                                success: function (json) {
+
+                                    $('.table-result').html('');
+
+                                    console.log(json);
+
+                                    var tr;
+                                    for (var i = 0; i < json.length; i++) {
+                                        tr = $('<tr/>');
+                                        tr.append("<td><a href='local.html?id=" + json[i].Id + "'>" + json[i].Id + "</a></td>");
+                                        tr.append("<td>" + json[i].Name + "</td>");
+                                        tr.append("<td>" + json[i].LocationType + "</td>");
+                                        tr.append("<td>" + json[i].Description + "</td>");
+                                        $('.table-result').append(tr);
+                                    }
+
+                                },
+                                error: function (xhr) {
+                                    alert(xhr.responseText);
+                                }
+                            });
+
+                        });
+
+                        $.getJSON(
+                            URL_TODOS_LOCAIS,
+                            function (json) {
+                                var tr;
+                                for (var i = 0; i < json.length; i++) {
+                                    tr = $('<tr/>');
+                                    tr.append("<td><a href='local.html?id=" + json[i].Id + "'>" + json[i].Id + "</a></td>");
+                                    tr.append("<td>" + json[i].Name + "</td>");
+                                    tr.append("<td>" + json[i].LocationType + "</td>");
+                                    tr.append("<td>" + json[i].Description + "</td>");
+                                    $('.table-result').append(tr);
+                                }
+                            });
+
+                    });
+
+                </script>
+
             </div>
         </div> <!-- /container-fluid -->
         <hr>
         <!-- Início container-fuild copyright -->
-		<div class="container-fluid copyright">
+        <div class="container-fluid copyright">
             <footer>
                 <p><a href="https://twitter.com/search?f=realtime&q=IncludeDayCI%26T&src=typd" title="#">#IncludeDayCI&T</a></p>
             </footer>
-		</div> <!-- /container-fluid copyright -->
-	</body>
+        </div>
+    </body>
 </html>

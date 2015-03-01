@@ -26,7 +26,7 @@ namespace IncludeDay.Data.Entities
         [StringLength(128)]
         public string City { get; set; }
 
-        public ICollection<Feedback> Feedbacks { get; set; }
+        public virtual IList<Feedback> Feedbacks { get; set; }
 
     }
 }
