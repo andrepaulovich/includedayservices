@@ -20,6 +20,8 @@ namespace IncludeDay.Data.Entities
         [Required]
         public string  Description { get; set; }
 
+        public string LocationType { get; set; }
+
         [Required]
         [StringLength(128)]
         public string City { get; set; }

@@ -9,7 +9,6 @@ namespace IncludeDay.Data.Entities
     {
         restaurant,
         theater,
-        cinema,
-
+        cinema
     }
 }

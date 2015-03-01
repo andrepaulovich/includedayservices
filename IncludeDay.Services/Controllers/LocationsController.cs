@@ -1,12 +1,13 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Binbin.Linq;
 using IncludeDay.Data;
 using IncludeDay.Data.Entities;
+using LinqKit;
 
 namespace IncludeDay.Services.Controllers
 {
@@ -15,22 +16,28 @@ namespace IncludeDay.Services.Controllers
         private readonly IncludeDayContext _db = new IncludeDayContext();
 
         // GET: api/Locations
-        public IQueryable<Location> GetLocations(string description, LocationType? type)
+        public List<Location> GetLocations([FromUri]Location filter)
         {
 
-            var predicate = PredicateBuilder.False<Location>();
+            var predicate = PredicateBuilder.True<Location>();
 
-            if(!string.IsNullOrEmpty(description))
+            if (filter != null && !string.IsNullOrEmpty(filter.Description))
             {
-                predicate = predicate.And(p => p.Description.Contains(description));
+                predicate = predicate.And(p => p.Description.Contains(filter.Description));
             }
 
-            if (type.HasValue)
+            if (filter != null && !string.IsNullOrEmpty(filter.LocationType))
             {
-                predicate = predicate.Or(p => p.Description.Contains(description));
+                predicate = predicate.And(p => p.LocationType.Contains(filter.LocationType));
             }
 
-            return _db.Locations.Where(predicate);
+            if (filter != null && !string.IsNullOrEmpty(filter.City))
+            {
+                predicate = predicate.And(p => p.City.Contains(filter.City));
+            }
+            
+            var list = _db.Locations.AsExpandable().Where(predicate);
+            return list.ToList();
 
         }
 
