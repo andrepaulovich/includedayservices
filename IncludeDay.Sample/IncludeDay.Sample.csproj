@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cadastrar.html" />
-    <Content Include="css\bootstrap.css" />
     <Content Include="css\main.css" />
     <Content Include="index.html" />
     <Content Include="js\querystring-0.9.0-min.js" />
