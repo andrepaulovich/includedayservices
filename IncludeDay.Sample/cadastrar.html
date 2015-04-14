@@ -23,6 +23,7 @@
 
 </head>
 <body>
+
     <!-- Início da barra de navegação -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -55,6 +56,7 @@
         </div>
     </div>
     <!-- /container hero -->
+
     <hr>
     <!-- Início container-fuild -->
     <div class="container">
@@ -120,8 +122,6 @@
                                 Id: 0,
                             };
 
-                            console.log(localizacao);
-
                             $.ajax({
                                 type: "POST",
                                 url: URL_CADASTRO,
@@ -130,7 +130,9 @@
                                 dataType: "json",
                                 processData: true,
                                 success: function (data) {
-                                    alert("success..." + data);
+
+                                    /// mensagem do sucesso.
+
                                 },
                                 error: function (xhr) {
                                     alert(xhr.responseText);
@@ -158,4 +160,5 @@
     </div>
     <!-- /container-fluid copyright -->
 </body>
+
 </html>

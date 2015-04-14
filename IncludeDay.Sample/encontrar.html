@@ -53,7 +53,9 @@
         </div>
     </div>
     <!-- /container hero -->
+
     <hr>
+
     <!-- Início container-fuild -->
     <div class="container">
         <div class="row-fluid">
@@ -96,10 +98,10 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Nome</th>
-                            <th>Tipo</th>
-                            <th>Descrição</th>
+                            <th width='20%'>Nome</th>
+                            <th width='20%'>Tipo</th>
+                            <th width='60%'>Descrição</th>
+                            <th width='0'></th>
                         </tr>
                     </thead>
                     <tbody class="table-result">
@@ -121,8 +123,6 @@
                             City: $("#city").val()
                         };
 
-                        console.log(filtro);
-
                         $.ajax({
                             type: "GET",
                             url: URL_TODOS_LOCAIS,
@@ -134,15 +134,13 @@
 
                                 $('.table-result').html('');
 
-                                console.log(json);
-
                                 var tr;
                                 for (var i = 0; i < json.length; i++) {
                                     tr = $('<tr/>');
-                                    tr.append("<td><a href='local.html?id=" + json[i].Id + "'>" + json[i].Id + "</a></td>");
                                     tr.append("<td>" + json[i].Name + "</td>");
                                     tr.append("<td>" + json[i].LocationType + "</td>");
                                     tr.append("<td>" + json[i].Description + "</td>");
+                                    tr.append("<td><a class='btn btn-default' href='local.html?id=" + json[i].Id + "'>Detalhes</a></td>");
                                     $('.table-result').append(tr);
                                 }
 
@@ -160,10 +158,10 @@
                             var tr;
                             for (var i = 0; i < json.length; i++) {
                                 tr = $('<tr/>');
-                                tr.append("<td><a href='local.html?id=" + json[i].Id + "'>" + json[i].Id + "</a></td>");
                                 tr.append("<td>" + json[i].Name + "</td>");
                                 tr.append("<td>" + json[i].LocationType + "</td>");
                                 tr.append("<td>" + json[i].Description + "</td>");
+                                tr.append("<td><a class='btn btn-default' href='local.html?id=" + json[i].Id + "'>Detalhes</a></td>");
                                 $('.table-result').append(tr);
                             }
                         });
